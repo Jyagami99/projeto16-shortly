@@ -1,5 +1,5 @@
-import usersRepository from "../repository/authRepository";
-import sessionRepository from "../repository/sessionsRepository";
+import usersRepository from "../repository/authRepository.js";
+import sessionRepository from "../repository/sessionsRepository.js";
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
 
@@ -26,6 +26,7 @@ export async function signIn(req, res) {
   const { email, password } = req.body;
   const { rows: users } = await usersRepository.getUserByEmail(email);
   const [user] = users;
+
   if (!user) {
     return res.sendStatus(401);
   }
