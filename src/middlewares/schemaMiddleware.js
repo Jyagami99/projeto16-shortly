@@ -7,6 +7,7 @@ export default function validateSchema(schema) {
         .status(422)
         .send(error.details.map((detail) => detail.message));
     }
+    
     next();
   };
 }

@@ -11,11 +11,11 @@ async function createUser(name, email, password) {
 }
 
 async function getUserByEmail(email) {
-  await db.query(`SELECT * FROM users WHERE email = $1`, [email]);
+  return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 }
 
 async function getUserById(id) {
-  await db.query(`SELECT * FROM users WHERE id = $1`, [id]);
+  return db.query(`SELECT * FROM users WHERE id = $1`, [id]);
 }
 
 const usersRepository = {

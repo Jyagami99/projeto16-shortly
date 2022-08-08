@@ -8,7 +8,7 @@ async function createSession(token, userId) {
 }
 
 async function getSessionByToken(token) {
-  await db.query(`SELECT * FROM sessions WHERE token = $1`, [token]);
+  return db.query(`SELECT * FROM sessions WHERE token = $1`, [token]);
 }
 
 const sessionRepository = {
