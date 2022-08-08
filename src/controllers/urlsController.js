@@ -35,3 +35,20 @@ export async function getUrlById(req, res) {
     return res.sendStatus(500);
   }
 }
+
+export async function openShortUrl(req, res) {
+  const { shortUrl } = req.params;
+
+  try {
+    const result = await urlsRepository.getByShortUrl(shortUrl);
+    if (result.rowCount === 0) {
+      return res.sendStatus(404);
+    }
+    const [url] = result.rows;
+    await urlsRepository.incrementURLVisitCount(url.id);
+    res.redirect(url.url);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+}
