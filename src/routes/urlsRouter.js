@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { shortenUrl } from "../controllers/urlsController.js";
+import { getUrlById, shortenUrl } from "../controllers/urlsController.js";
 import validateSchema from "../middlewares/schemaMiddleware.js";
 import validateToken from "../middlewares/tokenMiddleware.js";
 import urlSchema from "../schemas/urlSchema.js";
@@ -12,7 +12,7 @@ urlRouter.post(
   validateToken,
   shortenUrl
 );
-urlRouter.get("/urls/:id");
+urlRouter.get("/urls/:id", getUrlById);
 urlRouter.get("/urls/open/:shortUrl");
 urlRouter.delete("/urls/:id");
 

@@ -7,6 +7,10 @@ async function createShortUrl(url, shortUrl, id) {
   );
 }
 
-const urlsRepository = { createShortUrl };
+async function getURLById(id) {
+  await db.query(`SELECT * FROM urls WHERE id = $1`, [id]);
+}
+
+const urlsRepository = { createShortUrl, getURLById };
 
 export default urlsRepository;
